@@ -1,0 +1,5 @@
+{
+  "name": "Nouba Plus Lead Capture",
+  "description": "A stylish, mobile-first lead capture form for Nouba Plus travel agency. Visitors at events can scan a QR code to access the form and submit their contact information, which is then saved directly to a Google Sheet in real-time.",
+  "requestFramePermissions": []
+}
