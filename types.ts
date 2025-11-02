@@ -4,7 +4,7 @@ export interface FormData {
   email: string;
   phone: string;
   city: string;
-  interests: string;
+  interests: string[];
 }
 
 export type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';

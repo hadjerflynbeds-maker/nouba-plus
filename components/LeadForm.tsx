@@ -41,15 +41,15 @@ export const LeadForm: React.FC<LeadFormProps> = ({
       <InputField id="city" name="city" label="City" value={formData.city} onChange={onFormChange} required disabled={disabled} icon={<MapPinIcon />} />
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Offer of Interest</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Offers of Interest (Select all that apply)</label>
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 max-h-48 overflow-y-auto pr-2">
           {interestOptions.map((interest) => (
-            <RadioField
+            <CheckboxField
               key={interest}
               id={interest}
               name="interest"
               label={interest}
-              checked={formData.interests === interest}
+              checked={formData.interests.includes(interest)}
               onChange={() => onInterestsChange(interest)}
               disabled={disabled}
             />
@@ -97,7 +97,7 @@ const InputField: React.FC<InputFieldProps> = ({ label, id, icon, ...props }) =>
 );
 
 
-interface RadioFieldProps {
+interface CheckboxFieldProps {
   id: string;
   name: string;
   label: string;
@@ -106,16 +106,16 @@ interface RadioFieldProps {
   disabled?: boolean;
 }
 
-const RadioField: React.FC<RadioFieldProps> = ({ id, name, label, checked, onChange, disabled }) => (
+const CheckboxField: React.FC<CheckboxFieldProps> = ({ id, name, label, checked, onChange, disabled }) => (
   <div className="flex items-center">
     <input
       id={id}
       name={name}
-      type="radio"
+      type="checkbox"
       checked={checked}
       onChange={onChange}
       disabled={disabled}
-      className="h-4 w-4 text-orange-600 border-gray-300 focus:ring-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
+      className="h-4 w-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed"
     />
     <label htmlFor={id} className={`ml-2 block text-sm text-gray-900 ${disabled ? 'text-gray-500 cursor-not-allowed' : ''}`}>
       {label}

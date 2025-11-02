@@ -5,7 +5,7 @@ import { CheckCircleIcon } from './components/icons/CheckCircleIcon';
 import { ExclamationTriangleIcon } from './components/icons/ExclamationTriangleIcon';
 import { submitToSheet, generatePrefilledUrl } from './services/googleSheetService';
 import { FormData, SubmissionStatus } from './types';
-import { INTEREST_OPTIONS, FORM_FIELDS } from './constants';
+import { INTEREST_FIELD_MAP, FORM_FIELDS } from './constants';
 import { ConfigurationWarning } from './components/ConfigurationWarning';
 import { DuplicateIdWarning } from './components/DuplicateIdWarning';
 import { Footer } from './components/Footer';
@@ -28,7 +28,7 @@ const App: React.FC = () => {
     email: '',
     phone: '',
     city: '',
-    interests: '',
+    interests: [],
   };
 
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -43,7 +43,12 @@ const App: React.FC = () => {
   }, []);
 
   const handleInterestsChange = useCallback((interest: string) => {
-    setFormData(prev => ({ ...prev, interests: interest }));
+    setFormData(prev => {
+      const newInterests = prev.interests.includes(interest)
+        ? prev.interests.filter(i => i !== interest)
+        : [...prev.interests, interest];
+      return { ...prev, interests: newInterests };
+    });
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,7 +78,8 @@ const App: React.FC = () => {
       } else {
         throw new Error(response.error || 'An unknown error occurred.');
       }
-    } catch (err) {
+    } catch (err)
+ {
       const errorMessage = err instanceof Error ? err.message : 'Failed to submit form. Please try again.';
       setError(errorMessage);
       setSubmissionStatus('error');
@@ -128,7 +134,7 @@ const App: React.FC = () => {
           <LeadForm
             formData={formData}
             isLoading={isLoading}
-            interestOptions={INTEREST_OPTIONS}
+            interestOptions={Object.keys(INTEREST_FIELD_MAP)}
             onFormChange={handleFormChange}
             onInterestsChange={handleInterestsChange}
             onSubmit={handleSubmit}
