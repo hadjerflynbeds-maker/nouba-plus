@@ -1,16 +1,13 @@
 
 import React from 'react';
+import LogoSVG from './np.svg';
 
-interface LogoProps {
-  className?: string;
-}
-
-export const Logo: React.FC<LogoProps> = ({ className }) => {
+export const ProfileIcon: React.FC = () => {
   return (
-    <div className={`inline-block ${className}`}>
-      <svg viewBox="0 0 160 100" className="w-full h-full" src="C:\Users\HTL-ADM\Downloads\nouba-plus-lead-capture\components\NOUBA_PLUS_LOGO.svg"/>
-        
-    
-    </div>
+    <img
+      src={LogoSVG}
+      alt="Profile Icon"
+      className="h-5 w-5"
+    />
   );
 };
