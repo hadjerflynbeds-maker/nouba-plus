@@ -1,13 +1,33 @@
-
 import React from 'react';
-import LogoSVG from './np.svg';
 
-export const ProfileIcon: React.FC = () => {
+interface LogoProps {
+  className?: string;
+}
+
+export const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <img
-      src={LogoSVG}
-      alt="Profile Icon"
-      className="h-5 w-5"
-    />
+    <svg 
+      className={className} 
+      viewBox="0 0 240 50"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Nouba Plus Logo"
+    >
+      <style>
+        {`
+          .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            dominant-baseline: central;
+          }
+        `}
+      </style>
+      <text x="0" y="25" className="logo-text" fill="#1F2937">
+        Nouba
+      </text>
+      <text x="135" y="25" className="logo-text" fill="#F97316">
+        Plus
+      </text>
+    </svg>
   );
 };
