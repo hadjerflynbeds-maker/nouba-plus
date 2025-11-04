@@ -13,8 +13,7 @@ interface SubmitResponse {
  * @returns {string} The URL needed for form submission.
  */
 const getFormResponseUrl = (viewFormUrl: string): string => {
-  // A simple string replacement is robust enough for Google's consistent URL structure.
-  return viewFormUrl.replace('/viewform', '/formResponse');
+  return viewFormUrl.replace(/\/viewform\?.*$/, '/formResponse');
 };
 
 
@@ -26,6 +25,9 @@ export const submitToSheet = async (data: FormData): Promise<SubmitResponse> => 
   formData.append(FORM_FIELDS.email, data.email);
   formData.append(FORM_FIELDS.phone, data.phone);
   formData.append(FORM_FIELDS.city, data.city);
+  if (data.suggestions) {
+    formData.append(FORM_FIELDS.suggestions, data.suggestions);
+  }
   
   // For each selected interest, find its unique entry ID and append it.
   // The value for a checkbox question is the label of the option itself.
@@ -63,7 +65,7 @@ export const submitToSheet = async (data: FormData): Promise<SubmitResponse> => 
  */
 export const generatePrefilledUrl = (data: FormData): string => {
   // Ensure we are using the viewform URL, not formResponse
-  const baseUrl = GOOGLE_FORM_URL.replace('/formResponse', '/viewform');
+  const baseUrl = GOOGLE_FORM_URL.replace(/\/formResponse.*$/, '/viewform');
   const viewUrl = baseUrl.split('?')[0];
 
   const params = new URLSearchParams();
@@ -73,6 +75,7 @@ export const generatePrefilledUrl = (data: FormData): string => {
   if (data.email) params.append(FORM_FIELDS.email, data.email);
   if (data.phone) params.append(FORM_FIELDS.phone, data.phone);
   if (data.city) params.append(FORM_FIELDS.city, data.city);
+  if (data.suggestions) params.append(FORM_FIELDS.suggestions, data.suggestions);
   
   data.interests.forEach(interest => {
     const entryId = INTEREST_FIELD_MAP[interest];

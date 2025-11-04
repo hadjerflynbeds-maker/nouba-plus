@@ -11,7 +11,7 @@ interface LeadFormProps {
   formData: FormData;
   isLoading: boolean;
   interestOptions: string[];
-  onFormChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFormChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onInterestsChange: (interest: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled: boolean;
@@ -56,6 +56,16 @@ export const LeadForm: React.FC<LeadFormProps> = ({
           ))}
         </div>
       </div>
+
+      <TextAreaField
+        id="suggestions"
+        name="suggestions"
+        label="Other Suggestions? (Optional)"
+        value={formData.suggestions}
+        onChange={onFormChange}
+        disabled={disabled}
+        placeholder="e.g., London, UK or a specific tour idea"
+      />
       
       <button
         type="submit"
@@ -91,6 +101,27 @@ const InputField: React.FC<InputFieldProps> = ({ label, id, icon, ...props }) =>
         id={id}
         {...props}
         className="block w-full pl-10 pr-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+      />
+    </div>
+  </div>
+);
+
+interface TextAreaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string;
+  id: string;
+}
+
+const TextAreaField: React.FC<TextAreaFieldProps> = ({ label, id, ...props }) => (
+  <div>
+    <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      {label}
+    </label>
+    <div className="relative mt-1">
+      <textarea
+        id={id}
+        rows={3}
+        {...props}
+        className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
       />
     </div>
   </div>
