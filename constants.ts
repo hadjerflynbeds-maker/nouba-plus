@@ -15,7 +15,8 @@ export const FORM_FIELDS = {
   email: 'entry.1928527946',
   phone: 'entry.1254844136',
   city: 'entry.1085882308',
-  suggestions: 'entry.351666708', 
+  interests: 'entry.351666708', // The main ID for the checkbox group
+  suggestions: 'entry.351666708.other_option_response', // The ID for the "Other" option's text input
 };
 
 // --- OFFERS OF INTEREST ---
