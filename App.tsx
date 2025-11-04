@@ -29,14 +29,16 @@ const App: React.FC = () => {
     phone: '',
     city: '',
     interests: [],
+    suggestions: '',
   };
+
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle');
   const [error, setError] = useState<string>('');
   const [isDebugMode, setIsDebugMode] = useState<boolean>(false);
 
-  const handleFormChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   }, []);
