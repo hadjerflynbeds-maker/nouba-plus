@@ -98,7 +98,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 pt-8 md:p-8 md:pt-12 transition-all duration-500 my-auto">
+      <div className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 transition-all duration-500 my-auto">
         <div className="flex justify-center mb-6">
           <Logo className="h-16" />
         </div>
