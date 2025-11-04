@@ -28,6 +28,16 @@ export const INTEREST_FIELD_MAP: { [key: string]: string } = {
   "Tokyo, Japan": "entry.351666708",
   "Istanbul, Turkey": "entry.351666708",
   "Bali, Indonesia": "entry.351666708",
+  "Thailand": "entry.351666708",
+  "Malaysia": "entry.351666708",
+  "Barcelona, Spain": "entry.351666708",
+  "Tunis, Tunisia": "entry.351666708",
+  "Morocco": "entry.351666708",
+  "Egypt": "entry.351666708",
+  "Baku, Azerbaijan": "entry.351666708",
+  "Beijing, China": "entry.351666708",
+  "Netherlands": "entry.351666708",
+  "Doha, Qatar": "entry.351666708",
 };
 // Note: Your form uses ONE checkbox question for all interests. This is why all entry IDs
 // above are the SAME. The code is designed to handle this correctly.

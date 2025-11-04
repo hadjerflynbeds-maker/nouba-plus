@@ -30,7 +30,6 @@ const App: React.FC = () => {
     city: '',
     interests: [],
   };
-
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle');
